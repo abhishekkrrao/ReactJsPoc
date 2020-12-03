@@ -1,0 +1,36 @@
+.container {
+    text-align: center;
+    min-height: "100%" !important;
+    font-family: "Montserrat-Medium";
+  }
+.container-header {
+    background-color: #282c34;
+    min-height: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  .innerItem {
+    flex: 1;
+    flex-direction: column;
+    width: 65%;
+    max-width: 450px;
+    display: flex;
+    padding-top: 20px;
+    margin: 0 auto;
+  }
+  .input {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border-color: #ccc;
+    border-width: 1.5px;
+    font-family: "Montserrat-Medium";
+  }
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
