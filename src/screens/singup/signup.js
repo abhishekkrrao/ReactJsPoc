@@ -2,10 +2,31 @@ import React, { Component } from 'react'
 import './signup.css';
 import logo from '../../logo.svg';
 import Button from '../../componet/button'
+import firebase from 'firebase/app';
+import 'firebase/auth';
 class signup extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = { email: "a@g.com",password: "123456" }
   }
+
+  onSubmit = () => {
+    const { email,password } = this.state;
+     const auth  = firebase.auth();
+     
+     auth.createUserWithEmailAndPassword(email,password)
+     .then((res)=>{
+      this.props.history.push('/home');
+      console.log('res ',res)
+     })
+     .catch((error)=>{
+      console.log('err ',error)
+     })
+
+  
+
+
+  };
   render() {
     return (
       <div className="login">
@@ -25,14 +46,27 @@ class signup extends React.Component {
           {/* input fields  */}
 
           <div className="innerItem">
-            <input className="input" placeholder="Email *"></input>
-            <input className="input" placeholder="Password *"></input>
+          <input
+              value={this.state.email}
+              className="input"
+              placeholder="Email *"
+              onChange={(event) => { this.setState({ email: event.target.value }) }}>
+            </input>
+            <input
+              value={this.state.password}
+              className="input"
+              placeholder="Password *"
+              onChange={(event) => { this.setState({ password:event.target.value }) }}>
+            </input>
           </div>
 
           {/* custom button */}
 
           <Button onPress={() => {
-            console.log('dfgdsf')
+            console.log('dfgdsf');
+
+            this.onSubmit()
+
           }} title="Submit" style={{
             button: {
               width: "200px",
