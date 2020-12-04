@@ -3,6 +3,9 @@
     min-height: "100%" !important;
     font-family: "Montserrat-Medium";
   }
+  .login-header{
+    font-family: "Montserrat-Medium";
+  }
 .container-header {
     background-color: #282c34;
     min-height: 55px;

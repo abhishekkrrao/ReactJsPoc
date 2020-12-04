@@ -3,32 +3,35 @@ import './login.css';
 import logo from '../../logo.svg';
 import Button from '../../componet/button'
 import Signup from '../singup/signup';
-
+import Loader from '../../componet/loading'
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
 class login extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { email: "",password: "" }
+    this.state = { email: "",password: "",error: "",isloding: false }
   }
 
   onSubmit = () => {
+    this.setState({isloding:true},()=>{});
     const { email,password } = this.state;
     const auth = firebase.auth();
-
-
-
     auth.signInWithEmailAndPassword(email,password)
       .then((res) => {
-        this.props.history.push('/home');
-        console.log('res ',res)
+        setTimeout(()=>{
+          this.props.history.push('/home');
+          console.log('res ',res);
+          this.setState({isloding:false},()=>{});
+        },1500);
       })
       .catch(error => {
-        console.log('err ',error)
+        console.log('err ',error);
+        this.setState({ error: error.message },() => { });
+        setTimeout(()=>{
+          this.setState({isloding:false},()=>{});
+        },1500);
       });
-
-
   };
 
   render() {
@@ -42,7 +45,7 @@ class login extends React.Component {
 
         <div className="container">
 
-
+  
 
           {/* logo */}
           <img src={logo} className="App-logo" alt="logo" />
@@ -50,18 +53,22 @@ class login extends React.Component {
           {/* input fields  */}
 
           <div className="innerItem">
+            <p className="errorMessage">{this.state.error}</p>
+            {this.state.isloding && (<Loader></Loader>)}
             <input
               value={this.state.email}
               className="input"
               placeholder="Email *"
               onChange={(event) => { this.setState({ email: event.target.value }) }}>
             </input>
+
             <input
               value={this.state.password}
               className="input"
               placeholder="Password *"
-              onChange={(event) => { this.setState({ password:event.target.value }) }}>
+              onChange={(event) => { this.setState({ password: event.target.value }) }}>
             </input>
+
           </div>
 
           {/* custom button */}

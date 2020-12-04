@@ -1,43 +1,33 @@
-import React,{ Component,useState } from 'react'
-import logo from '../../logo.svg';
+import React,{ Component } from 'react'
 import './style.css'
-import Button from '../../componet/button'
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import useStyle from './material'
 import assets from '../../assets/index'
-export default class landingpage extends React.Component {
+import { Row,Col } from 'react-bootstrap'
+export default class landingpage extends Component {
     constructor(props) {
         super(props)
         this.state = { list: [] };
     }
+
+    onClick = () => {
+        console.log('called')
+        this.props.history.push('/joblist');
+      };
     render() {
         return (
             <div className="login">
                 <header className="login-header"><p>Home</p></header>
                 <div className="container">
-                    <div className={useStyle.root}>
-                        <GridList className={useStyle.gridList} cols={2}>
-                            {this.state.list.map((tile,index) => (
-                                <GridListTile
-                                    style={{ fontSize: 11 }}
-                                    key={index}>
-                                    <img style={{ width: 120,height: 120,alignSelf: "flex-start" }} src={tile.img} alt={index} />
-                                    <GridListTileBar
-                                        title={tile.title}
-                                        style={{ fontSize: 11 }}
-                                        actionIcon={
-                                            <IconButton style={{ fontSize: 11 }} aria-label={`star ${tile.title}`}>
-                                                <StarBorderIcon className={useStyle.title} />
-                                            </IconButton>
-                                        }
-                                    />
-                                </GridListTile>
-                            ))}
-                        </GridList>
+                    <div className="grid-container">
+                        {this.state.list.map((obj,index) => {
+                            return (
+                                <div onClick={()=>{this.onClick()}} className="grid-item" key={index}>
+                                    <div key={index} className="grid-item">
+                                        <img key={index + new Date().getTime()} src={obj.img}></img>
+                                        {obj.title}
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

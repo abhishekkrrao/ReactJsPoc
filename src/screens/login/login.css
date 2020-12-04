@@ -2,6 +2,13 @@
     text-align: center;
 
   }
+  .errorMessage{
+    color: #ff5405;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    font-size: 11px;
+  }
 .login-header {
     background-color: #282c34;
     min-height: 55px;
