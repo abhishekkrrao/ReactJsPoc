@@ -13,6 +13,14 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    .leftIcon{
+        width: 24px;
+        height: 21px;
+        float: left;
+        position: absolute;
+        left: 20px;
+        filter: invert(1);
+    }
   }
 .gridContainer{
     display: grid;
@@ -26,6 +34,7 @@
     display: block;
     font-family: "Montserrat-Medium";
 
+  
     h2 {
         color: #2d2d2d !important;
         text-decoration: none;
@@ -141,3 +150,19 @@
       margin: 10px;
   }
   }
+
+  @keyframes go-left-right {
+    from { left: 0px; }            
+    to { left: calc(100% - 50px); } 
+  }
+ .buttonStyle{
+    animation: go-left-right 3s infinite alternate;
+    width: 200px;
+    background: #282c34;
+    display: block;
+    margin: 0px auto;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding: 10px;
+    color: #ffffff;
+ }

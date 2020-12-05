@@ -1,5 +1,7 @@
 import React,{ Component } from 'react';
 import './style.scss'
+import Button from '../../componet/button'
+import back from '../../assets/images/back.png'
 class Joblist extends Component {
     constructor(props) {
         super(props)
@@ -8,7 +10,11 @@ class Joblist extends Component {
     render() {
         return (
             <div className="jobContainer">
-                <header className="header"><p>Job List</p></header>
+                <header
+                    className="header">
+                    <img onClick={() => { this.props.history.goBack(); }} className="leftIcon" key={new Date().getTime()} src={back}></img>
+                    <p>Job List</p>
+                </header>
                 <div className="gridContainer">
                     {this.state.list.map((obj,index) => {
                         return (
@@ -47,6 +53,12 @@ class Joblist extends Component {
                                     <span>{obj.jobPostDate}</span>
                                     <span>{obj.jobStatus}</span>
                                 </div>
+
+                                <div key={index} className="buttonStyle">Apply Now</div>
+                                {/* <Button onPress={() => { console.log('Apply Now Called '); }} title="Apply Now"
+                                    style="buttonStyle"
+                                    className="buttonStyle"
+                                ></Button> */}
                             </div>
                         );
                     })}
